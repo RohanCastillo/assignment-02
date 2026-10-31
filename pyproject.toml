@@ -1,4 +1,4 @@
-﻿[project]
+[project]
 name = "assignment-02"
 version = "0.1.0"
 description = "Course assignment on robustness testing with PyTorch transforms"
@@ -13,7 +13,10 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["ipykernel"]
+dev = [
+    "ipykernel",
+    "nbconvert>=7.17.2",
+]
 
 [tool.uv]
 package = false
