@@ -13,8 +13,9 @@
 #   squeue -u $USER
 #   tail -f runs/run_notebook_<jobid>.out
 #
-# Output: task-01.executed.ipynb next to the original, with every cell's
-# output (prints, plots) filled in. Your task-01.ipynb is left untouched.
+# Output: task-01.ipynb is overwritten in place with every cell's output
+# (prints, plots) filled in. Before the next `git pull` on Amarel, discard
+# those outputs with `git restore task-01.ipynb`, or the pull will refuse.
 # If a cell raises an error, execution stops and the traceback is in the log.
 #
 #SBATCH --job-name=run_notebook
@@ -49,7 +50,7 @@ uv run jupyter nbconvert \
     --to notebook \
     --execute \
     --ExecutePreprocessor.timeout=-1 \
-    --output task-01.executed.ipynb \
+    --inplace \
     task-01.ipynb
 
 echo "Finished $(date)"
